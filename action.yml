@@ -1,0 +1,36 @@
+name: 'ECS Deploy Action'
+description: 'Run a Container Image as an ECS Task'
+inputs:
+  access_key: 
+    description: 'AWS access key'
+    required: true
+  secret_access_key:
+    description: 'AWS secret access key'
+    required: true
+  task_def:
+    description: 'The ECS task definition for the task'
+    required: true
+  network_conf:
+    description: "The ECS task's network configuration"
+    required: true
+  cluster:
+    description: 'The ECS Cluster where the task will be deployed'
+    required: false
+    default: 'test'
+  region:
+    description: 'The AWS region'
+    required: false
+    default: 'eu-north-1'
+outputs:
+  ip:
+    description: 'Public ip address of the task'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.access_key }}
+    - ${{ inputs.secret_access_key }}
+    - ${{ inputs.task_def }}
+    - ${{ inputs.network_conf }}
+    - ${{ inputs.cluster }}
+    - ${{ inputs.region }}
