@@ -16,11 +16,11 @@ inputs:
   cluster:
     description: 'The ECS Cluster where the task will be deployed'
     required: false
-    default: 'test'
+    default: ''
   region:
     description: 'The AWS region'
     required: false
-    default: 'eu-north-1'
+    default: ''
 outputs:
   ip:
     description: 'Public ip address of the task'
